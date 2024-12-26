@@ -22,11 +22,13 @@ class GameObject(ABC):
 
 
 class Attacker(ABC):
+    @abstractmethod
     def attack(self, unit):
         pass
 
 
 class Moveable(ABC):
+    @abstractmethod
     def move(self, new_x, new_y):
         pass
 
