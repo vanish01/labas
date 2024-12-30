@@ -36,7 +36,7 @@ class AnimalFactory:
         elif animal_type == "cat":
             return Cat()
         else:
-            raise ValueError("Unknown animal type")
+            raise ValueError("хто ето")
 
 # Пример работы AnimalFactory
 if __name__ == "__main__":

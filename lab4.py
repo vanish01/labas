@@ -61,37 +61,30 @@ handler_b = ConcreteHandlerB()
 handler_a.set_next(handler_b)
 
 # Iterator Pattern
-class Iterator(ABC):
-    @abstractmethod
-    def has_next(self):
-        pass
+class SimpleIterator:
+    def __init__(self, numbers):
+        self.contents = numbers
+        self.index = 0
 
-    @abstractmethod
-    def next(self):
-        pass
+    def __iter__(self):
+        return self
 
-class CollectionIterator(Iterator):
-    def __init__(self, collection):
-        self._collection = collection
-        self._index = 0
-
-    def has_next(self):
-        return self._index < len(self._collection)
-
-    def next(self):
-        if not self.has_next():
+    def __next__(self):
+        if self.index < len(self.contents):
+            result = self.contents[self.index]
+            self.index += 1
+            return result
+        else:
             raise StopIteration
-        item = self._collection[self._index]
-        self._index += 1
-        return item
 
-# пример
-class Collection:
-    def __init__(self, items):
-        self._items = items
+#пример
+numbers = [30, '40', False, 30, 'hello']
+iterator = SimpleIterator(numbers)
 
-    def create_iterator(self):
-        return CollectionIterator(self._items)
+print(iterator)
+
+for number in iterator:
+    print(number)
 
 # Example execution
 if __name__ == "__main__":
@@ -107,8 +100,3 @@ if __name__ == "__main__":
     print(handler_a.handle("B"))
     print(handler_a.handle("C"))
 
-    # Iterator
-    collection = Collection(["item1", "item2", "item3"])
-    iterator = collection.create_iterator()
-    while iterator.has_next():
-        print(iterator.next())
