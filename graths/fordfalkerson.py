@@ -1,21 +1,9 @@
 class FordFulkerson:
     def __init__(self, graph):
-        """
-        Инициализация алгоритма Форда-Фалкерсона.
-        :param graph: Матрица пропускных способностей.
-        """
         self.graph = graph
         self.num_vertices = len(graph)
 
     def dfs(self, residual_graph, s, t, parent):
-        """
-        Поиск в глубину для нахождения увеличивающего пути.
-        :param residual_graph: Остаточная сеть.
-        :param s: Исток.
-        :param t: Сток.
-        :param parent: Массив для хранения пути.
-        :return: True, если путь найден.
-        """
         visited = [False] * self.num_vertices
         stack = [s]
         visited[s] = True
@@ -32,12 +20,6 @@ class FordFulkerson:
         return False
 
     def max_flow(self, source, sink):
-        """
-        Нахождение максимального потока.
-        :param source: Исток.
-        :param sink: Сток.
-        :return: Значение максимального потока.
-        """
         residual_graph = [row[:] for row in self.graph]
         parent = [-1] * self.num_vertices
         max_flow = 0
@@ -60,9 +42,6 @@ class FordFulkerson:
         return max_flow
 
 def test_ford_fulkerson():
-    """
-    Тестирование алгоритма Форда-Фалкерсона.
-    """
     graph = [
         [0, 16, 13, 0, 0, 0],
         [0, 0, 10, 12, 0, 0],
@@ -75,5 +54,4 @@ def test_ford_fulkerson():
     assert ff.max_flow(0, 5) == 23, "Тест не пройден"
     print("Все тесты пройдены!")
 
-# Запуск тестов
 test_ford_fulkerson()
