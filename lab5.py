@@ -1,4 +1,4 @@
-# Proxy Pattern
+# Proxy
 class RealSubject:
     def request(self):
         return "RealSubject: Handling request."
@@ -22,12 +22,12 @@ class Proxy:
     def log_access(self):
         print("Прокси: Logging the time of request.")
 
-# Example usage of Proxy
+# пример
 real_subject = RealSubject()
 proxy = Proxy(real_subject)
 print(proxy.request())
 
-# Bridge Pattern
+# Bridge
 class Implementation:
     def operation_implementation(self):
         pass
@@ -51,7 +51,7 @@ class ExtendedAbstraction(Abstraction):
     def operation(self):
         return f"ExtendedAbstraction: Extended operation with:{self._implementation.operation_implementation()}"
 
-# Example usage of Bridge
+# пример
 implementation_a = ConcreteImplementationA()
 abstraction = Abstraction(implementation_a)
 print(abstraction.operation())
@@ -60,7 +60,7 @@ implementation_b = ConcreteImplementationB()
 extended_abstraction = ExtendedAbstraction(implementation_b)
 print(extended_abstraction.operation())
 
-# Adapter Pattern
+# Adapter
 class Target:
     def request(self):
         return "Target: The default target's behavior."
@@ -76,7 +76,7 @@ class Adapter(Target):
     def request(self):
         return f"Adapter: (TRANSLATED) {self._adaptee.specific_request()[::-1]}"
 
-# Example usage of Adapter
+# пример
 adaptee = Adaptee()
 print(f"Adaptee: {adaptee.specific_request()}")
 
